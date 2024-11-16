@@ -16,6 +16,8 @@ import {
 import User from './components/User';
 import UserList from './components/UserList';
 import ProductState from './context/ProductState';
+import Signup from './components/Signup';
+import Login from './components/Login';
 function App() {
 
 
@@ -34,6 +36,8 @@ function App() {
     <Route path="/contact"element={<Contact />}/>
     <Route path="/user/:userId/:userName" element={<User />} />
     <Route path="/user" element={<UserList />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/login" element={<Login />} />
 
        
         </Routes>
