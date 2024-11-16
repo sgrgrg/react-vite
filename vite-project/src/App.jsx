@@ -13,6 +13,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import User from './components/User';
+import UserList from './components/UserList';
 function App() {
 
 
@@ -21,13 +23,15 @@ function App() {
     <Router>
    
     <Navbar/>
-    <Counter/>
+    
     <Routes>
     
 
     <Route path="/"element={<Home />}/>
     <Route path="/about"element={<About />}/>
     <Route path="/contact"element={<Contact />}/>
+    <Route path="/user/:userId/:userName" element={<User />} />
+    <Route path="/user" element={<UserList />} />
 
        
         </Routes>

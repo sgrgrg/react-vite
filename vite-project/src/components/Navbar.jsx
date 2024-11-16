@@ -32,6 +32,7 @@ const Navbar = () => {
           <Link to="/">Home</Link>
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact Us</Link>
+          <Link to="/user">User</Link>
         </div>
         <button onClick={toggleMode}>
           {darkMode ? 'Light Mode' : 'Dark Mode'}
