@@ -15,11 +15,13 @@ import {
 } from "react-router-dom";
 import User from './components/User';
 import UserList from './components/UserList';
+import ProductState from './context/ProductState';
 function App() {
 
 
   return (
     <>
+    <ProductState>
     <Router>
    
     <Navbar/>
@@ -36,6 +38,7 @@ function App() {
        
         </Routes>
         </Router>
+        </ProductState>
     </>
   )
 }
