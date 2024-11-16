@@ -1,32 +1,44 @@
 import React, { useState } from 'react';
-
+import Alert from './Alert';
+import {Link} from "react-router-dom";
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [alert, setAlert] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState(''); 
 
   const toggleMode = () => {
     if (darkMode) {
       setDarkMode(false);
-      setAlert('Switched to Light Mode');
+      setAlertMessage('Switched to Light Mode');
+      setAlertType('light');
     } else {
       setDarkMode(true);
-      setAlert('Switched to Dark Mode');
+      setAlertMessage('Switched to Dark Mode');
+      setAlertType('dark');
     }
 
-
+    // Clear the alert message after 3 seconds
     setTimeout(() => {
-      setAlert('');
+      setAlertMessage('');
+      setAlertType('');
     }, 3000);
   };
 
   return (
-    <nav className={darkMode ? 'navbar dark' : 'navbar light'}>
-      <h1>Navbar</h1>
-      <button onClick={toggleMode}>
-        {darkMode ? 'Light Mode' : 'Dark Mode'}
-      </button>
-      {alert && <div className="alert">{alert}</div>}
-    </nav>
+    <>
+      <nav className={darkMode ? 'navbar dark' : 'navbar light'}>
+        <h1>Navbar</h1>
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/contact">Contact Us</Link>
+        </div>
+        <button onClick={toggleMode}>
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
+      </nav>
+      {alertMessage && <Alert message={alertMessage} type={alertType} />}
+    </>
   );
 };
 
