@@ -2,6 +2,7 @@ import './App.css'
 import About from './components/About';
 import Classes from './components/Classes';
 import Contact from './components/Contact';
+import Counter from './components/Counter';
 import Func from './components/Func';
 import Home from './components/Home';
 
@@ -20,7 +21,7 @@ function App() {
     <Router>
    
     <Navbar/>
-    
+    <Counter/>
     <Routes>
     
 
