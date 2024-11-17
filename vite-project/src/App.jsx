@@ -6,6 +6,7 @@ import Counter from './components/Counter';
 import Func from './components/Func';
 import Home from './components/Home';
 
+
 import Navbar from './components/Navbar'
 
 import {
@@ -18,6 +19,7 @@ import UserList from './components/UserList';
 import ProductState from './context/ProductState';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Textmanipulator from './components/Textmanipulator';
 function App() {
 
 
@@ -25,7 +27,7 @@ function App() {
     <>
     <ProductState>
     <Router>
-   
+
     <Navbar/>
     
     <Routes>
@@ -38,6 +40,7 @@ function App() {
     <Route path="/user" element={<UserList />} />
     <Route path="/signup" element={<Signup />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/textmanipulator" element={<Textmanipulator/>} />
 
        
         </Routes>

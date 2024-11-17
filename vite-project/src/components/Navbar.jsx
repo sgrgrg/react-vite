@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Alert from './Alert';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import '../css/Navbar.css';
+
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [alertType, setAlertType] = useState(''); 
+  const [alertType, setAlertType] = useState('');
+  const [showProjectMenu, setShowProjectMenu] = useState(false);
 
   const toggleMode = () => {
     if (darkMode) {
@@ -24,6 +27,10 @@ const Navbar = () => {
     }, 3000);
   };
 
+  const toggleProjectMenu = () => {
+    setShowProjectMenu(!showProjectMenu);
+  };
+
   return (
     <>
       <nav className={darkMode ? 'navbar dark' : 'navbar light'}>
@@ -32,11 +39,19 @@ const Navbar = () => {
           <Link to="/">Home</Link>
           <Link to="/about">About Us</Link>
           <Link to="/contact">Contact Us</Link>
-          <Link to="/user">User</Link>
+          <div className="dropdown" onMouseEnter={toggleProjectMenu} onMouseLeave={toggleProjectMenu}>
+            <span className="dropdown-toggle">Project</span>
+            {showProjectMenu && (
+              <div className="dropdown-menu">
+                <Link to="/user">UserSystem</Link>
+                <Link to="/textmanipulator">TextManipulator</Link>
+              </div>
+            )}
+          </div>
           <Link to="/signup">Signup</Link>
           <Link to="/login">Login</Link>
         </div>
-        <button onClick={toggleMode}> 
+        <button onClick={toggleMode}>
           {darkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </nav>

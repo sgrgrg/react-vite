@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import productContext from '../context/productContext';
 import Mac from "../assets/images/mac.jpeg";
-
+import '../css/About.css'
 const About = () => {
     const context = useContext(productContext);
     const { product } = context;
