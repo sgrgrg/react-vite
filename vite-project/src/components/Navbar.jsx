@@ -8,19 +8,17 @@ const Navbar = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [showProjectMenu, setShowProjectMenu] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const [showMobileMenu, setShowMobileMenu] = useState(false); 
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
 
   const toggleMode = () => {
-    if (darkMode) {
-      setDarkMode(false);
-      setAlertMessage('Switched to Light Mode');
-      setAlertType('light');
-    } else {
-      setDarkMode(true);
-      setAlertMessage('Switched to Dark Mode');
-      setAlertType('dark');
-    }
-
-    // Clear the alert message after 3 seconds
+    setDarkMode(!darkMode);
+    setAlertMessage(darkMode ? 'Switched to Light Mode' : 'Switched to Dark Mode');
+    setAlertType(darkMode ? 'light' : 'dark');
     setTimeout(() => {
       setAlertMessage('');
       setAlertType('');
@@ -33,27 +31,49 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={darkMode ? 'navbar dark' : 'navbar light'}>
-        <h1>Navbar</h1>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link>
-          <div className="dropdown" onMouseEnter={toggleProjectMenu} onMouseLeave={toggleProjectMenu}>
-            <span className="dropdown-toggle">Project</span>
-            {showProjectMenu && (
-              <div className="dropdown-menu">
-                <Link to="/user">UserSystem</Link>
-                <Link to="/textmanipulator">TextManipulator</Link>
-              </div>
-            )}
+      <nav className={`navbar ${darkMode ? 'dark' : 'light'}`}>
+        <div className="navbar-container">
+          <h1 className="navbar-logo">Brand</h1>
+          <div className="hamburger" onClick={toggleMobileMenu}>
+            ☰
           </div>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
+          <div className={`nav-links ${showMobileMenu ? 'show' : ''}`}>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <div
+              className="dropdown"
+              onMouseEnter={toggleProjectMenu}
+              onMouseLeave={toggleProjectMenu}
+            >
+              <span className="dropdown-toggle">Projects</span>
+              {showProjectMenu && (
+                <div className="dropdown-menu">
+                  <Link to="/user">UserSystem</Link>
+                  <Link to="/textmanipulator">TextManipulator</Link>
+                </div>
+              )}
+            </div>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+            <div className="cart-icon">
+              🛒
+              <span className="cart-count">{cartCount}</span>
+            </div>
+          </div>
+          <button className="mode-toggle" onClick={toggleMode}>
+            {darkMode ? '☀️' : '🌙'}
+          </button>
         </div>
-        <button onClick={toggleMode}>
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
+        {showMobileMenu && (
+          <div className="mobile-menu">
+            <Link to="/" onClick={toggleMobileMenu}>Home</Link>
+            <Link to="/about" onClick={toggleMobileMenu}>About</Link>
+            <Link to="/contact" onClick={toggleMobileMenu}>Contact</Link>
+            <Link to="/signup" onClick={toggleMobileMenu}>Signup</Link>
+            <Link to="/login" onClick={toggleMobileMenu}>Login</Link>
+          </div>
+        )}
       </nav>
       {alertMessage && <Alert message={alertMessage} type={alertType} />}
     </>
