@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+
+import React, { useState, useContext} from 'react';
 import Alert from './Alert';
 import { Link } from "react-router-dom";
+import productContext from '../context/productContext';
 import '../css/Navbar.css';
 
 const Navbar = () => {
@@ -8,8 +10,9 @@ const Navbar = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
   const [showProjectMenu, setShowProjectMenu] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
   const [showMobileMenu, setShowMobileMenu] = useState(false); 
+  const context = useContext(productContext);
+  const { state: { cart }} = context;
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -56,10 +59,10 @@ const Navbar = () => {
             </div>
             <Link to="/signup">Signup</Link>
             <Link to="/login">Login</Link>
-            <div className="cart-icon">
+            <Link to='/cartitem' className="cart-icon">
               🛒
-              <span className="cart-count">{cartCount}</span>
-            </div>
+              <span className="cart-count">{cart.length}</span>
+            </Link>
           </div>
           <button className="mode-toggle" onClick={toggleMode}>
             {darkMode ? '☀️' : '🌙'}

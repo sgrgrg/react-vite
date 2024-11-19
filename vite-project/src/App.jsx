@@ -20,6 +20,7 @@ import ProductState from './context/ProductState';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Textmanipulator from './components/Textmanipulator';
+import Cartitems from './components/Cartitems';
 function App() {
 
 
@@ -41,7 +42,9 @@ function App() {
     <Route path="/signup" element={<Signup />} />
     <Route path="/login" element={<Login />} />
     <Route path="/textmanipulator" element={<Textmanipulator/>} />
+    <Route path="/cartitem" element={<Cartitems/>} />
 
+    
        
         </Routes>
         </Router>
