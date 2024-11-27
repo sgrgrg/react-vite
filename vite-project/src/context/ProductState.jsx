@@ -21,12 +21,19 @@ const ProductState = (props) => {
       "name": "mango",
       "description": "this is local product from Nepal",
       "price": 200,
-      "instock": 4
+      "instock": 3
+    },
+    {
+      "id": 3,
+      "name": "banana",
+      "description": "this is local product from Nepal",
+      "price": 300,
+      "instock": 5
     }
   ]
   const [product, setProduct] = useState(prod)
   
-  const [state, dispatch] = useReducer(cartReducer,
+  const [state, dispatch] = useReducer(cartReducer, 
     {
         products: product,
         cart: []
